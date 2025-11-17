@@ -1,0 +1,64 @@
+/* input{
+    margin: auto;
+} */
+
+h1{
+    font-style: inherit;
+    color: #f0f0f0;
+}
+
+body {
+  background: linear-gradient(135deg, #232526, #414345);
+}
+
+button {
+  background: #2e2e2e;
+  color: #fff;
+  box-shadow: 3px 3px 6px #111, -3px -3px 6px #555;
+}
+
+button:hover {
+  background: #3b3b3b;          /* halka sa light shade on hover */
+  transform: scale(1.05);       /* thoda zoom in */
+  box-shadow: 0 0 15px #00ffff; /* neon blue glow */
+  transition: all 0.2s ease-in-out;
+}
+
+input{
+      background: #c3df29;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.Calculator{
+margin: auto;
+padding: auto;
+text-align: center;
+margin-top: 45px;
+
+}
+
+.button{
+
+        font-size: 20px;
+    font-weight: bold;
+    padding: 22px;
+    cursor: pointer;
+    width: 88px;
+    margin: 0px 3px;
+    border: 2px solid black;
+    border-radius: 15px;
+    margin-bottom: 12px;
+}
+.input{
+    width: 347px;
+    font-size: 24px;
+    padding: 18px;
+    margin-left: 0px;
+    margin-bottom: 26px;
+    padding-left: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
