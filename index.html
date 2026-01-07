@@ -1,53 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X - O Game - Friend or Computer</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #eae0e0;
+  }
+
+  h1 {
+    color: #0a0909;
+  }
+  h2 {
+    color: #0a0909 ;
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  .cell {
+    width: 100px;
+    height: 100px;
+    background: rgb(213, 223, 230);
+    border: 2px solid #333;
+    font-size: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .cell:hover {
+    background: #c0b9b9;
+  }
+
+  #status {
+    margin-top: 20px;
+    font-size: 1.2em;
+  }
+
+  .menu {
+    margin-top: 20px;
+  }
+
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  #reset {
+    display: none;
+  }
+</style>
 </head>
 <body>
 
-    <h1 class="text-center">Welcome to my Calculator</h1>
+<h1>❌/⭕ Game</h1>
 
-    <div class="Calculator" mx-auto m-w-20>
-        <input  class="input" >
-        
-        <div class="row">
-            <button class="button">AC</button>
-            <button class="button">DEL</button>
-            <button class="button">%</button>
-            <button class="button">/</button>
-        </div>
-         <div class="row">
-            <button class="button">7</button>
-            <button class="button">8</button>
-            <button class="button">9</button>
-            <button class="button">*</button>
-        </div>
-         <div class="row">
-            <button class="button">4</button>
-            <button class="button">5</button>
-            <button class="button">6</button>
-            <button class="button">-</button>
-        </div>
-         <div class="row">
-            <button class="button">1</button>
-            <button class="button">2</button>
-            <button class="button">3</button>
-            <button class="button">+</button>
-        </div>
-        <div class="row">
-            <button class="button">00</button>
-            <button class="button">0</button>
-            <button class="button">.</button>
-            <button class="button">=</button>
-        </div>
-    </div>
+<div class="menu" id="menu">
+  <h2>Choose Mode:</h2>
+  <button id="friendMode">👬 Play with Friend</button>
+  <button id="computerMode">🤖 Play with Computer</button>
+</div>
 
+<div class="board" id="board" style="display:none;">
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+</div>
 
+<div id="status"></div>
+<button id="reset">Restart Game</button>
 
-    <script src="script.js"></script>
-    
+<script>
+  const cells = document.querySelectorAll(".cell");
+  const statusText = document.getElementById("status");
+  const resetBtn = document.getElementById("reset");
+  const board = document.getElementById("board");
+  const menu = document.getElementById("menu");
+  const friendModeBtn = document.getElementById("friendMode");
+  const computerModeBtn = document.getElementById("computerMode");
+
+  let currentPlayer = "X";
+  let gameActive = false;
+  let mode = ""; // "friend" or "computer"
+
+  const winningConditions = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+  ];
+
+  friendModeBtn.addEventListener("click", () => startGame("friend"));
+  computerModeBtn.addEventListener("click", () => startGame("computer"));
+  resetBtn.addEventListener("click", resetGame);
+
+  function startGame(selectedMode) {
+    mode = selectedMode;
+    menu.style.display = "none";
+    board.style.display = "grid";
+    resetBtn.style.display = "inline-block";
+    gameActive = true;
+    currentPlayer = "X";
+    statusText.textContent = mode === "friend" ? "Player X's Turn" : "Your Turn (X)";
+  }
+
+  cells.forEach(cell => cell.addEventListener("click", handleCellClick));
+
+  function handleCellClick(e) {
+    const cell = e.target;
+    const index = [...cells].indexOf(cell);
+
+    if (cell.textContent !== "" || !gameActive) return;
+
+    cell.textContent = currentPlayer;
+
+    checkWinner();
+
+    if (!gameActive) return;
+
+    if (mode === "friend") {
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      statusText.textContent = `Player ${currentPlayer}'s Turn`;
+    } 
+    else if (mode === "computer") {
+      currentPlayer = "O";
+      statusText.textContent = "Computer's Turn 🤖";
+      setTimeout(computerMove, 600);
+    }
+  }
+
+  function computerMove() {
+    const emptyCells = [...cells].filter(cell => cell.textContent === "");
+    if (emptyCells.length === 0 || !gameActive) return;
+
+    const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    randomCell.textContent = "O";
+
+    checkWinner();
+
+    if (gameActive) {
+      currentPlayer = "X";
+      statusText.textContent = "Your Turn (X)";
+    }
+  }
+
+  function checkWinner() {
+    let roundWon = false;
+
+    for (let condition of winningConditions) {
+      const [a, b, c] = condition;
+      if (
+        cells[a].textContent &&
+        cells[a].textContent === cells[b].textContent &&
+        cells[a].textContent === cells[c].textContent
+      ) {
+        roundWon = true;
+        break;
+      }
+    }
+
+    if (roundWon) {
+      statusText.textContent = `🎉 Player ${currentPlayer} Wins!`;
+      gameActive = false;
+      return;
+    }
+
+    if ([...cells].every(cell => cell.textContent !== "")) {
+      statusText.textContent = "😐 It's a Draw!";
+      gameActive = false;
+    }
+  }
+
+  function resetGame() {
+    cells.forEach(cell => cell.textContent = "");
+    currentPlayer = "X";
+    gameActive = true;
+    statusText.textContent = mode === "friend" ? "Player X's Turn" : "Your Turn (X)";
+  }
+</script>
+
+<!-- <script src=""></script> -->
 </body>
 </html>
+
+
