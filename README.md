@@ -1,11 +1,68 @@
-- 👋 Hi, I’m @balendra8769
-- 👀 I’m interested in Coding
-- I'm studing BCA - and also learning -fontend Dev & backend Dev
-- 🌱 I’m currently learning JAVASCRIPT ,PYTHON
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...email: balendratripathi416@gmail.com
+<h1 align="center">Hi 👋, I'm Balendra Tripathi</h1>
+<h3 align="center">BCA Student | Frontend & Backend Developer</h3>
 
-<!---
-balendra8769/balendra8769 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+---
+
+## 👨‍💻 About Me
+
+- 🎓 BCA Student from India
+- 💻 Learning **Full Stack Web Development**
+- 🌱 Currently learning **JavaScript, Python**
+- 🚀 Interested in **Frontend + Backend Development**
+- 🤝 Looking to collaborate on **Web Development Projects**
+
+---
+
+## 🛠️ Tech Stack
+
+💻 Languages
+
+- Python
+- JavaScript
+- C
+
+🌐 Web Development
+
+- HTML
+- CSS
+- JavaScript
+- Node.js (learning)
+
+🗄️ Database
+
+- MySQL
+
+⚙️ Tools
+
+- Git
+- GitHub
+- VS Code
+- XAMPP
+
+---
+
+## 📊 GitHub Stats
+
+![Balendra GitHub stats](https://github-readme-stats.vercel.app/api?username=balendra8769&show_icons=true&theme=tokyonight)
+
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=balendra8769&layout=compact&theme=tokyonight)
+
+---
+
+## 🔥 Current Projects
+
+- 🧮 Calculator Web App
+- 🎓 University Website
+- ❤️ Valentine Web Page
+
+---
+
+## 📫 Connect With Me
+
+📧 Email: balendratripathi416@gmail.com  
+
+💻 GitHub: https://github.com/balendra8769
+
+---
+
+⭐ From [Balendra Tripathi](https://github.com/balendra8769)
