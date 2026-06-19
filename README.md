@@ -53,7 +53,6 @@
 
 - 🧮 Calculator Web App
 - 🎓 University Website
-- ❤️ Valentine Web Page
 
 ---
 
